@@ -1,0 +1,133 @@
+- check property options
+- more flexible way for checking associations
+
+be_timestamped
+be_key
+validace
+Category.should # => Expectation
+Category.should has_property(:name) # => true
+Category.my_property.should be_private
+... soo ...
+should true => OK
+=> just return self instead of true => chain
+@category.should has(1).error_on(:name).with("Nazev...")
+
+irb(main):012:0> Product.slug
+=> #<Property:Product:slug>
+irb(main):014:0> Product.slug.to_yaml_properties
+=> ["@custom", "@default", "@extra_options", "@field", "@fields", "@getter", "@index", "@instance_variable_name", "@key", "@lazy", "@length", "@model", "@name", "@nullable", "@options", "@primitive", "@reader_visibility", "@serial", "@track", "@type", "@unique_index", "@writer_visibility"]
+irb(main):015:0> Product.slug.key?
+=> true
+irb(main):018:0> Product.slug.serial?
+=> false
+irb(main):019:0> Product.slug.default
+=> nil
+irb(main):022:0> Product.slug.extra_options
+=> {:writter=>:private}
+irb(main):027:0> Product.slug.unique_index
+=> false
+rb(main):030:0> Product.slug.reader_visibility
+=> :public
+irb(main):032:0> Product.slug.options
+=> {:key=>true, :nullable=>false, :auto_validation=>false}
+irb(main):004:0> Product.slug.nullable?
+=> false
+irb(main):006:0> Product.slug.args_and_options
+=> [[], {}]
+irb(main):007:0> Product.slug.blank?
+=> false
+irb(main):008:0> Product.slug.present?
+=> true
+irb(main):009:0> Product.slug.index
+=> false
+irb(main):010:0> Product.slug.size
+=> 50
+irb(main):011:0> Product.slug.primitive
+=> String
+irb(main):012:0> Product.slug.unique
+=> true
+
+
+irb(main):022:0> OrderItem.field_naming_convention
+NameError: undefined local variable or method `args' for DataMapper:Module
+irb(main):023:0> OrderItem.to_yaml_properties
+=> ["@_valid_relations", "@field_naming_conventions", "@properties", "@relationships", "@storage_names", "@validations"]
+irb(main):024:0> OrderItem.eager_properties
+=> [#<Property:OrderItem:id>, #<Property:OrderItem:inverted>, #<Property:OrderItem:count>, #<Property:OrderItem:size>, #<Property:OrderItem:color>, #<Property:OrderItem:unit_price>, #<Property:OrderItem:product_slug>, #<Property:OrderItem:order_variable_symbol>, #<Property:OrderItem:color_id>, #<Property:OrderItem:size_height>, #<Property:OrderItem:size_width>]
+irb(main):025:0> OrderItem.opts_from_validator_args
+ArgumentError: wrong number of arguments (0 for 1)
+irb(main):026:0> OrderItem.registered_as_hook?
+ArgumentError: wrong number of arguments (0 for 2)
+irb(main):027:0> OrderItem.first_or_create
+ArgumentError: wrong number of arguments (0 for 1)
+irb(main):028:0> OrderItem.property :count
+ArgumentError: wrong number of arguments (1 for 2)
+irb(main):029:0> OrderItem.hook_method_name
+ArgumentError: wrong number of arguments (0 for 3)
+irb(main):030:0> cattr_reader
+NameError: undefined local variable or method `cattr_reader' for #<Object:0xb7d1894c>
+irb(main):031:0> OrderItem.properties_with_subclasses
+=> #<PropertySet:{#<Property:OrderItem:id>,#<Property:OrderItem:inverted>,#<Property:OrderItem:count>,#<Property:OrderItem:size>,#<Property:OrderItem:color>,#<Property:OrderItem:unit_price>,#<Property:OrderItem:product_slug>,#<Property:OrderItem:order_variable_symbol>,#<Property:OrderItem:color_id>,#<Property:OrderItem:size_height>,#<Property:OrderItem:size_width>}>
+irb(main):032:0> OrderItem.timestamps
+ArgumentError: You need to pass at least one argument
+irb(main):033:0> OrderItem.relationships
+=> {:product=>#<DataMapper::Associations::Relationship:0xb6cd62c8 @repository_name=:default, @parent_model=Product, @parent_properties=nil, @name=:product, @child_key=#<PropertySet:{#<Property:OrderItem:product_slug>}>, @child_model=OrderItem, @parent_key=#<PropertySet:{#<Property:Product:slug>}>, @options={}, @query={}, @child_properties=nil>, :order=>#<DataMapper::Associations::Relationship:0xb6cd7268 @repository_name=:default, @parent_model=Order, @parent_properties=nil, @name=:order, @child_key=#<PropertySet:{#<Property:OrderItem:order_variable_symbol>}>, @child_model=OrderItem, @parent_key=#<PropertySet:{#<Property:Order:variable_symbol>}>, @options={}, @query={}, @child_properties=nil>, :color=>#<DataMapper::Associations::Relationship:0xb6cd5350 @repository_name=:default, @parent_model=Color, @parent_properties=nil, @name=:color, @child_key=#<PropertySet:{#<Property:OrderItem:color_id>}>, @child_model=OrderItem, @parent_key=#<PropertySet:{#<Property:Color:id>}>, @options={}, @query={}, @child_properties=nil>}
+irb(main):034:0> OrderItem.name
+=> "OrderItem"
+irb(main):035:0> OrderItem.validatable?
+=> false
+irb(main):036:0> OrderItem.default_order
+=> [#<DataMapper::Query::Direction #<Property:OrderItem:id> asc>]
+irb(main):037:0> OrderItem.class_variables
+=> []
+irb(main):038:0> OrderItem.base_model
+=> OrderItem
+irb(main):039:0> OrderItem.default_scope
+=> {}
+irb(main):040:0> OrderItem.ancestors
+=> [OrderItem, DataMapper::Validate, DataMapper::Timestamp, #<Module:0xb6cdf0f8>, #<Module:0xb6ce00ac>, #<Module:0xb6ce0f98>, #<Module:0xb6ce1e48>, Extlib::Hook, DataMapper::Hook, DataMapper::Resource, DataMapper::Types, DataMapper::Resource::Transaction, DataMapper::Assertions, Object, Spec::Extensions::Main, Spec::Expectations::ObjectExpectations, DataMapper::Sweatshop::Unique, Base64::Deprecated, Base64, JSON::Ext::Generator::GeneratorMethods::Object, Kernel]
+irb(main):041:0> OrderItem.generate_attributes
+DataMapper::Sweatshop::NoFixtureExist: default fixture was not found for class OrderItem
+irb(main):042:0> OrderItem.paranoid_properties
+=> {}
+irb(main):043:0> OrderItem.make
+DataMapper::Sweatshop::NoFixtureExist: default fixture was not found for class OrderItem
+irb(main):044:0> OrderItem.to_yaml
+TypeError: can't dump anonymous class Class
+irb(main):045:0> OrderItem.chainable
+=> #<Module:0xb6fdd73c>
+irb(main):046:0> OrderItem._valid_model
+=> nil
+irb(main):047:0> OrderItem.properties
+=> #<PropertySet:{#<Property:OrderItem:id>,#<Property:OrderItem:inverted>,#<Property:OrderItem:count>,#<Property:OrderItem:size>,#<Property:OrderItem:color>,#<Property:OrderItem:unit_price>,#<Property:OrderItem:product_slug>,#<Property:OrderItem:order_variable_symbol>,#<Property:OrderItem:color_id>,#<Property:OrderItem:size_height>,#<Property:OrderItem:size_width>}>
+irb(main):048:0> Order.tap
+LocalJumpError: no block given
+irb(main):049:0> Order.type
+(irb):49: warning: Object#type is deprecated; use Object#class
+=> Class
+irb(main):050:0> o = Order
+=> Order
+irb(main):051:0> o.gen_attrs
+NoMethodError: undefined method `new_record?' for "#ffff":String
+	from :0irb(main):052:0> o.validators
+=> #<DataMapper::Validate::ContextualValidators:0xb6fdd020 @contexts={:default=>[#<DataMapper::Validate::RequiredFieldValidator:0xb6fdd084 @if_clause=nil, @options={:message=>"Zákazník musí být vyplněn", :context=>:default}, @unless_clause=nil, @field_name=:customer>, #<DataMapper::Validate::WithinValidator:0xb6fd0eb0 @if_clause=nil, @options={:message=>nil, :context=>:default, :set=>[:paypal, :personally, :cod, :transfer]}, @unless_clause=nil, @field_name=:payment_type>, #<DataMapper::Validate::WithinValidator:0xb6fca6dc @if_clause=nil, @options={:message=>nil, :context=>:default, :set=>[:unprocessed, :processed]}, @unless_clause=nil, @field_name=:status>, #<DataMapper::Validate::PrimitiveValidator:0xb6fc6988 @if_clause=nil, @options={:message=>nil, :context=>:default, :allow_nil=>true}, @unless_clause=nil, @field_name=:created_at>, #<DataMapper::Validate::PrimitiveValidator:0xb6fbbac4 @if_clause=nil, @options={:message=>nil, :context=>:default, :allow_nil=>true}, @unless_clause=nil, @field_name=:updated_at>, #<DataMapper::Validate::LengthValidator:0xb6fb16a0 @range=nil, @if_clause=nil, @min=nil, @equal=nil, @options={:message=>nil, :maximum=>50, :context=>:default, :allow_nil=>true}, @validation_method=:max, @unless_clause=nil, @max=50, @field_name=:referer>, #<DataMapper::Validate::PrimitiveValidator:0xb6faddac @if_clause=nil, @options={:message=>nil, :maximum=>50, :context=>:default, :allow_nil=>true}, @unless_clause=nil, @field_name=:referer>, #<DataMapper::Validate::LengthValidator:0xb6e66430 @range=nil, @if_clause=nil, @min=nil, @equal=nil, @options={:message=>nil, :maximum=>50, :context=>:default, :allow_nil=>true}, @validation_method=:max, @unless_clause=nil, @max=50, @field_name=:customer_email>, #<DataMapper::Validate::PrimitiveValidator:0xb6e6493c @if_clause=nil, @options={:message=>nil, :maximum=>50, :context=>:default, :allow_nil=>true}, @unless_clause=nil, @field_name=:customer_email>]}>
+irb(main):053:0> o.options
+=> nil
+irb(main):054:0> o.to_yaml_style
+=> nil
+irb(main):055:0> o.subclass
+ArgumentError: wrong number of arguments (0 for 1)
+irb(main):056:0> o.present?
+=> true
+irb(main):057:0> o.args_for
+ArgumentError: wrong number of arguments (0 for 1)
+irb(main):058:0> o.in?
+ArgumentError: wrong number of arguments (0 for 1)
+irb(main):059:0> o.to_query
+ArgumentError: wrong number of arguments (0 for 2)
+irb(main):060:0> o.orig_auto_generate_validations
+ArgumentError: wrong number of arguments (0 for 1)
+irb(main):061:0> o.many_to_one_relationships
+=> [#<DataMapper::Associations::Relationship:0xb6fd9d58 @repository_name=:default, @parent_model=Customer, @parent_properties=nil, @name=:customer, @child_key=#<PropertySet:{#<Property:Order:customer_email>}>, @child_model=Order, @parent_key=#<PropertySet:{#<Property:Customer:email>}>, @options={}, @query={}, @child_properties=nil>]
+irb(main):062:0> o.unique
+NoMethodError: undefined method `arity' for nil:NilClass

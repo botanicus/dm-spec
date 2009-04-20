@@ -1,0 +1,35 @@
+h1. About
+
+RSpec matchers for DataMapper.
+
+h1. Usage
+
+You must include DataMapperMatchers to your specs. It can be done in *spec/spec_helper.rb*:
+
+<pre>
+$: << File.dirname(__FILE__) + "/../lib"
+require "dm-core"
+require "dm-spec"
+
+DataMapper.setup(:default, "sqlite3::memory")
+
+Spec::Runner.configure do |config|
+  config.include(DataMapperMatchers)
+  config.before(:each) do
+    DataMapper.auto_migrate!
+  end
+end
+</pre>
+
+That's it. Now just use these matchers in your specs. All the matchers you should call on model class, not on model instance.
+
+<pre>
+Post.should has_property(:title)
+Post.should has_many(:comments)
+Post.should has_and_belongs_to_many(:tags)
+Post.should belongs_to(:category)
+Post.should has_timestamps      # created_at, updated_at
+Post.should has_timestamps(:at) # created_at, updated_at
+Post.should has_timestamps(:on) # created_on, updated_on
+Post.should has_timestamps(:created_at)
+</pre>

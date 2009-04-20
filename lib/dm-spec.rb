@@ -1,0 +1,5 @@
+require "spec/matchers/dm/has_property"
+require "spec/matchers/dm/belongs_to"
+require "spec/matchers/dm/has_many"
+require "spec/matchers/dm/has_and_belongs_to_many"
+require "spec/matchers/dm/has_timestamps"
