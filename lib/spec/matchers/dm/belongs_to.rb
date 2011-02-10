@@ -18,7 +18,7 @@ module DataMapperMatchers
     end
     
     def description
-      "belongs to"
+      "belongs to #{@name}"
     end
     
     def failure_message

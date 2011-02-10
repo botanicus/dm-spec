@@ -12,11 +12,11 @@ module DataMapperMatchers
     # Category.should has_property(:id)
     def matches?(model)
       @model = model
-      return @model.properties.has_property?(@expected)
+      return @model.properties.named?(@expected)
     end
     
     def description
-      "has property"
+      "has property '#{@expected}'"
     end
     
     def failure_message

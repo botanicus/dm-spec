@@ -18,7 +18,7 @@ module DataMapperMatchers
     end
     
     def description
-      "has and belongs to many"
+      "has and belongs to many #{@name}"
     end
     
     def failure_message

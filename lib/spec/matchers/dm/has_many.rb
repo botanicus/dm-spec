@@ -22,7 +22,7 @@ module DataMapperMatchers
     end
 
     def description
-      "has many"
+      "has many #{@name}"
     end
     
     def failure_message
